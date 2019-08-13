@@ -242,4 +242,8 @@ class GardenBot(GardenBotBase):
                     control_2.remove("LEFT")
         if len(control_2) == 0:
             control_2 = ["UP", "DOWN", "RIGHT", "LEFT"]
-        return random.choice(control_2)
+        random_1 = random.choice(control_2)
+        print("HARVESTER", control_1)
+        #print(random_1)
+        print(self.current_turn)
+        return random_1

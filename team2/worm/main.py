@@ -176,28 +176,28 @@ class GardenBot(GardenBotBase):
                 if self.map[self.x][self.y - 1]["type"]== self.tile_types["IMPASSABLE"]:
                     up -= 5
             if self.y < self.map_height - 1:
-                if self.map[self.x][self.y + 1]["type"] == self.tile_types["PUMPKIN"]:   
+                if self.map[self.x][self.y + 1]["type"] == self.tile_types["TOMATO"]:   
                     down += 2
             if self.x < self.map_width - 1:
-                if self.map[self.x + 1][self.y]["type"] == self.tile_types["PUMPKIN"]:   
+                if self.map[self.x + 1][self.y]["type"] == self.tile_types["TOMATO"]:   
                     right += 2
             if self.x > 0:
-                if self.map[self.x - 1][self.y]["type"] == self.tile_types["PUMPKIN"]:  
+                if self.map[self.x - 1][self.y]["type"] == self.tile_types["TOMATO"]:  
                     left += 2
             if self.y > 0:
-                if self.map[self.x][self.y - 1]["type"] == self.tile_types["PUMPKIN"]:  
+                if self.map[self.x][self.y - 1]["type"] == self.tile_types["TOMATO"]:  
                     up += 2
             if self.y < self.map_height - 2:
-                if self.map[self.x][self.y + 2]["type"] == self.tile_types["PUMPKIN"]:   
+                if self.map[self.x][self.y + 2]["type"] == self.tile_types["TOMATO"]:   
                     down += 2
             if self.x < self.map_width - 2:
-                if self.map[self.x + 2][self.y]["type"] == self.tile_types["PUMPKIN"]:   
+                if self.map[self.x + 2][self.y]["type"] == self.tile_types["TOMATO"]:   
                     right += 2
             if self.x > 1:
-                if self.map[self.x - 2][self.y]["type"] == self.tile_types["PUMPKIN"]:  
+                if self.map[self.x - 2][self.y]["type"] == self.tile_types["TOMATO"]:  
                     left += 2
             if self.y > 1:
-                if self.map[self.x][self.y - 2]["type"] == self.tile_types["PUMPKIN"]:  
+                if self.map[self.x][self.y - 2]["type"] == self.tile_types["TOMATO"]:  
                     up += 2
             
         control_1 = [up, down, right, left]
@@ -216,4 +216,7 @@ class GardenBot(GardenBotBase):
                     control_2.remove("LEFT")
         if len(control_2) == 0:
             control_2 = ["UP", "DOWN", "RIGHT", "LEFT"]
-        return random.choice(control_2)
+        random_1 = random.choice(control_2)
+        #print("WORM", control_1)
+        #print(random_1)
+        return random_1
