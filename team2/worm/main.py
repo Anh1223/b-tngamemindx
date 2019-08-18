@@ -49,16 +49,15 @@ class GardenBot(GardenBotBase):
                         if self.y - 1 == enemies_information["y"]:
                             up -= 7
                     if enemies_information["role"] == 1:
-                        if enemies_information["x"] == self.x and enemies_information["y"] == self.y:
-                            return "STAY"
-                        if enemies_information["x"] > self.x:
-                            right += 3
-                        if enemies_information["x"] < self.x:
-                            left += 3
-                        if enemies_information["y"] > self.y:
-                            up += 3
-                        if enemies_information["y"] < self.y:
-                            down += 3
+                        if enemies_information["fruitCarrying"] != 0:
+                            if enemies_information["x"] > self.x:
+                                left += 3
+                            if enemies_information["x"] < self.x:
+                                right += 3
+                            if enemies_information["y"] > self.y:
+                                up += 3
+                            if enemies_information["y"] < self.y:
+                                down += 3
             elif  self.enemies == []:
                 if self.x < self.map_width:
                     right += 1
@@ -68,22 +67,22 @@ class GardenBot(GardenBotBase):
                 right += 2
             if self.x - allies_information["x"]> 2:
                 left += 2
-            if allies_information["x"] - self.y > 2:
+            if allies_information["y"] - self.y > 2:
                 down += 2
-            if self.x - allies_information["x"] > 2:
+            if self.x - allies_information["y"] > 2:
                 up += 2
             if self.x < self.map_width - 1:
                 if self.map[self.x + 1][self.y]["type"]== self.tile_types["IMPASSABLE"]:
-                    right -= 5
+                    right -= 6
             if self.x > 0:
                 if self.map[self.x - 1][self.y]["type"]== self.tile_types["IMPASSABLE"]:
-                    left -= 5
+                    left -= 6
             if self.y < self.map_height - 1:
                 if self.map[self.x][self.y + 1]["type"]== self.tile_types["IMPASSABLE"]:
-                    down -= 5
+                    down -= 6
             if self.y > 0:
                 if self.map[self.x][self.y - 1]["type"]== self.tile_types["IMPASSABLE"]:
-                    up -= 5
+                    up -= 6
             if self.y < self.map_height - 1:
                 if self.map[self.x][self.y + 1]["type"] == self.tile_types["PUMPKIN"]:   
                     down += 2
@@ -132,49 +131,50 @@ class GardenBot(GardenBotBase):
                         if self.x < self.map_width - 1:
                             if self.x + 1 == enemies_information["x"]:
                                 right -= 7
-                        if self.x - 1 == enemies_information["x"]:
-                            left -= 7
+                        if self.x != 0:
+                            if self.x - 1 == enemies_information["x"]:
+                                left -= 7
                         if self.y < self.map_height - 1:
                             if self.y + 1 == enemies_information["y"]:
                                 down -= 7
-                        if self.y - 1 == enemies_information["y"]:
-                            up -= 7
+                        if self.y != 0:
+                            if self.y - 1 == enemies_information["y"]:
+                                up -= 7
                     if enemies_information["role"] == 1:
-                        if enemies_information["x"] == self.x and enemies_information["y"] == self.y:
-                            return "STAY"
-                        if enemies_information["x"] > self.x:
-                            right += 3
-                        if enemies_information["x"] < self.x:
-                            left += 3
-                        if enemies_information["y"] > self.y:
-                            up += 3
-                        if enemies_information["y"] < self.y:
-                            down += 3
+                        if enemies_information["fruitCarrying"] != 0:
+                            if enemies_information["x"] > self.x:
+                                left += 3
+                            if enemies_information["x"] < self.x:
+                                right += 3
+                            if enemies_information["y"] > self.y:
+                                up += 3
+                            if enemies_information["y"] < self.y:
+                                down += 3
             elif  self.enemies == []:
-                if self.x < self.map_width:
+                if self.x > 0:
                     left += 1
-                if self.y < self.map_height:
+                if self.y < 0:
                     up += 1
             if allies_information["x"] - self.x > 2:
                 right += 2
             if self.x - allies_information["x"]> 2:
                 left += 2
-            if allies_information["x"] - self.y > 2:
+            if allies_information["y"] - self.y > 2:
                 down += 2
-            if self.x - allies_information["x"] > 2:
+            if self.x - allies_information["y"] > 2:
                 up += 2
             if self.x < self.map_width - 1:
                 if self.map[self.x + 1][self.y]["type"]== self.tile_types["IMPASSABLE"]:
-                    right -= 5
+                    right -= 6
             if self.x > 0:
                 if self.map[self.x - 1][self.y]["type"]== self.tile_types["IMPASSABLE"]:
-                    left -= 5
+                    left -= 6
             if self.y < self.map_height - 1:
                 if self.map[self.x][self.y + 1]["type"]== self.tile_types["IMPASSABLE"]:
-                    down -= 5
+                    down -= 6
             if self.y > 0:
                 if self.map[self.x][self.y - 1]["type"]== self.tile_types["IMPASSABLE"]:
-                    up -= 5
+                    up -= 6
             if self.y < self.map_height - 1:
                 if self.map[self.x][self.y + 1]["type"] == self.tile_types["TOMATO"]:   
                     down += 2
