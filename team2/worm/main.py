@@ -16,7 +16,14 @@ class GardenBot(GardenBotBase):
         left = 0
         max_control = 0
         control_2 = ["UP", "DOWN", "RIGHT", "LEFT"]
-        allies_information = self.allies[1]
+        if self.y == 0:
+            up -= 20
+        if self.y == self.map_height - 1:
+            down -= 20
+        if self.x == self.map_width - 1:
+            right -= 20
+        if self.x == 0:
+            left -= 20
         if self.my_team == 0:
             for i in range(3):
                 if c == 0:
@@ -41,36 +48,31 @@ class GardenBot(GardenBotBase):
                         if self.x < self.map_width - 1:
                             if self.x + 1 == enemies_information["x"]:
                                 right -= 7
-                        if self.x - 1 == enemies_information["x"]:
-                            left -= 7
+                        if self.x != 0:
+                            if self.x - 1 == enemies_information["x"]:
+                                left -= 7
                         if self.y < self.map_height - 1:
                             if self.y + 1 == enemies_information["y"]:
                                 down -= 7
-                        if self.y - 1 == enemies_information["y"]:
-                            up -= 7
+                        if self.y != 0:
+                            if self.y - 1 == enemies_information["y"]:
+                                up -= 7
                     if enemies_information["role"] == 1:
                         if enemies_information["fruitCarrying"] != 0:
                             if enemies_information["x"] > self.x:
-                                left += 3
-                            if enemies_information["x"] < self.x:
                                 right += 3
+                            if enemies_information["x"] < self.x:
+                                left += 3
                             if enemies_information["y"] > self.y:
-                                up += 3
-                            if enemies_information["y"] < self.y:
                                 down += 3
-            elif  self.enemies == []:
-                if self.x < self.map_width:
-                    right += 1
-                if self.y < self.map_height:
-                    down += 1
-            if allies_information["x"] - self.x > 2:
-                right += 2
-            if self.x - allies_information["x"]> 2:
-                left += 2
-            if allies_information["y"] - self.y > 2:
-                down += 2
-            if self.x - allies_information["y"] > 2:
-                up += 2
+                            if enemies_information["y"] < self.y:
+                                up += 3
+                    else:
+                        if self.x < self.map_width:
+                            right += 1
+                        if self.y < self.map_height:
+                            down += 1
+            
             if self.x < self.map_width - 1:
                 if self.map[self.x + 1][self.y]["type"]== self.tile_types["IMPASSABLE"]:
                     right -= 6
@@ -143,26 +145,18 @@ class GardenBot(GardenBotBase):
                     if enemies_information["role"] == 1:
                         if enemies_information["fruitCarrying"] != 0:
                             if enemies_information["x"] > self.x:
-                                left += 3
-                            if enemies_information["x"] < self.x:
                                 right += 3
+                            if enemies_information["x"] < self.x:
+                                left += 3
                             if enemies_information["y"] > self.y:
-                                up += 3
-                            if enemies_information["y"] < self.y:
                                 down += 3
-            elif  self.enemies == []:
-                if self.x > 0:
-                    left += 1
-                if self.y < 0:
-                    up += 1
-            if allies_information["x"] - self.x > 2:
-                right += 2
-            if self.x - allies_information["x"]> 2:
-                left += 2
-            if allies_information["y"] - self.y > 2:
-                down += 2
-            if self.x - allies_information["y"] > 2:
-                up += 2
+                            if enemies_information["y"] < self.y:
+                                up += 3
+                    else:
+                        if self.x > 0:
+                            left += 1
+                        if self.y < 0:
+                            up += 1
             if self.x < self.map_width - 1:
                 if self.map[self.x + 1][self.y]["type"]== self.tile_types["IMPASSABLE"]:
                     right -= 6

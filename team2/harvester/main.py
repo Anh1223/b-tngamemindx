@@ -18,6 +18,14 @@ class GardenBot(GardenBotBase):
         left = 0
         max_control = 0
         control_2 = ["UP", "DOWN", "RIGHT", "LEFT"]
+        if self.y == 0:
+            up -= 20
+        if self.y == self.map_height - 1:
+            down -= 20
+        if self.x == self.map_width - 1:
+            right -= 20
+        if self.x == 0:
+            left -= 20
         if self.state["fruitCarrying"] < self.game_rule["harvesterMaxCapacity"]:
             if self.y < self.map_height - 1:
                 if self.map[self.x][self.y + 1]["type"] == self.tile_types["WILDBERRY"]:
@@ -211,7 +219,6 @@ class GardenBot(GardenBotBase):
         if len(control_2) == 0:
             control_2 = ["UP", "DOWN", "RIGHT", "LEFT"]
         random_1 = random.choice(control_2)
-        #print("HARVESTER", control_1)
-        #print(random_1)
-        #print(self.current_turn)
+        # print("HARVESTER", control_1)
+        # print(random_1)
         return random_1

@@ -16,6 +16,14 @@ class GardenBot(GardenBotBase):
         right = 0
         left = 0
         control_2 = ["UP", "DOWN", "RIGHT", "LEFT"]
+        if self.y == 0:
+            up -= 20
+        if self.y == self.map_height - 1:
+            down -= 20
+        if self.x == self.map_width - 1:
+            right -= 20
+        if self.x == 0:
+            left -= 20
         for i in self.allies:
             allies_information = i
             if allies_information["role"] == 1:
